@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="/editBlog.js"></script>
+
+    <title>Blog Application</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            overflow-wrap: break-word;
+        }
+
+        .main {
+            border: 0px solid black;
+            box-shadow: 0 5px 9px 0 rgba(0, 0, 0, 0.2);
+            min-height: 100vh;
+            background: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .5)), url("/bg.jpg");
+            background-color: lightgoldenrodyellow;
+        }
+
+        a {
+            color: black;
+        }
+
+        .hbutton {
+            background-color: #343a40;
+            border-color: #343a40;
+            color: #F8F8FF;
+            margin: 5px;
+            border-radius: 4px;
+        }
+
+        .hbutton:hover {
+            color: #F8F8FF;
+            background-color: #23272b;
+            border-color: #1d2124;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.4);
+            transition: 0.2s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="top" class="container-fluid main">
+
+        <div class="row">
+
+            <div class="col-3">
+                <ul class="nav flex-column mt-3 p-1 sticky-top" style="height: calc(100vh- mt-3)">
+                    <li class="nav-item font-weight-bold">
+                        <i><a href="/" class="nav-link fullLink  hbutton">Home</a>
+                        </i>
+                    </li>
+                    <li class="nav-item font-weight-bold">
+                        <i><a href="/add" class="nav-link fullLink hbutton">Add Blog</a></i>
+                    </li>
+                    {{#each blogs}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="?blog={{_id}}">{{title}}</a>
+                    </li>
+                    {{/each}}
+
+                </ul>
+            </div>
+
+            <div class="col-9 mt-4 p-4">
+                {{#if selectedBlog}}
+                <h1 class="mb-1 text-center">{{selectedBlog.title}}</h1>
+
+                <div class="container text-center mt-1 mb-4 font-italic" style="color: #107896;">
+                    <h5>By &nbsp;<strong>{{selectedBlog.author}}</span></strong></h5>
+                </div>
+
+                <p>{{selectedBlog.body}}
+                </p>
+
+                <div>
+                    <a class="btn btn-primary btn-dark float-right mr-4 hbutton" href="#top" role="button">
+                        <i class="fa fa-long-arrow-up" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+                <div>
+                    <a id="editBlog" class="btn btn-primary btn-dark float-right mr-4 hbutton"
+                        href="/edit/?blog={{selectedBlog._id}}" role="button">Edit Blog</a>
+                </div>
+
+                {{else}}
+                <div class="jumbotron my-5 mr-1 text-center">
+                    <h1 class="display-6">Blog
+                        <small class="text-muted"> It Out</small>
+                    </h1>
+                </div>
+
+                <div class="text-center font-weight-bold">
+                    <span id="footer_f">
+                        <i class="fa fa-code" style="color:blue;font-weight:bold;"></i>
+                        &nbsp;&nbsp;with&nbsp;&nbsp;
+                        <i class="fa fa-heart" style="color:red"></i>
+                        &nbsp;&nbsp;by&nbsp;
+                        <a href="https://github.com/vmanav">Manav Verma</a>.
+                    </span>
+                </div>
+
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Adding Blogs</title>
+    <style>
+        /* a {
+            color: black;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="container mt-1 pt-1">
+        <a href="/"> &lt; Back</a>
+    </div>
+
+    <div class="container mt-4">
+        <h3 class="my-4">Edit Your Blog</h3>
+        <form action="/edit/?blog={{selectedBlog._id}}" method="POST">
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" name="title" value="{{selectedBlog.title}}">
+                <small class="form-text text-muted">This will be the title of your blog.</small>
+            </div>
+
+            <div class="form-group">
+                <label>Body</label>
+                <textarea type="text" class="form-control" name="body" rows="8">{{selectedBlog.body}}</textarea>
+                <small class="form-text text-muted">This will be the content of your blog.</small>
+            </div>
+
+            <div class="form-group">
+                <label>Author</label>
+                <input type="text" class="form-control" name="author" value="{{selectedBlog.author}}" readonly="true">
+                <small class="form-text text-muted">This will be the Author Name for your blog.</small>
+            </div>
+
+            <button type="submit" class="btn btn-dark">Save Changes</button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
